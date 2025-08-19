@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Volume2, Phone } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Menu, X, Volume2, Phone } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,16 +12,16 @@ const Navbar = () => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navItems = [
-    { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
-    { name: 'Services', path: '/services' },
-    { name: 'Gallery', path: '/gallery' },
-    { name: 'Contact', path: '/contact' },
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+    { name: "Services", path: "/services" },
+    { name: "Gallery", path: "/gallery" },
+    { name: "Contact", path: "/contact" },
   ];
 
   return (
@@ -31,21 +31,21 @@ const Navbar = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6 }}
         className={`fixed w-full z-50 transition-all duration-500 ${
-          scrolled 
-            ? 'bg-black/90 backdrop-blur-md shadow-lg border-b border-red-500/20' 
-            : 'bg-transparent'
+          scrolled
+            ? "bg-black/90 backdrop-blur-md shadow-lg border-b border-red-500/20"
+            : "bg-transparent"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-3">
             {/* Compact Logo */}
             <Link to="/" className="flex items-center space-x-2 group">
-              <motion.div 
+              <motion.img
                 whileHover={{ scale: 1.05, rotate: 5 }}
-                className="w-10 h-10 bg-gradient-to-r from-red-500 to-red-600 rounded-lg flex items-center justify-center shadow-md"
-              >
-                <Volume2 className="h-5 w-5 text-white" />
-              </motion.div>
+                src="./src/logo.jpg" // <-- replace with your logo/image path
+                alt="FINS CAR AUDIO Logo"
+                className="w-10 h-10 rounded-lg shadow-md object-cover"
+              />
               <div>
                 <span className="text-xl font-bold text-white group-hover:text-red-400 transition-colors">
                   FINS CAR AUDIO
@@ -60,9 +60,9 @@ const Navbar = () => {
                   key={item.name}
                   to={item.path}
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
-                    location.pathname === item.path 
-                      ? 'bg-red-500 text-white shadow-md' 
-                      : 'text-gray-300 hover:text-white hover:bg-white/10'
+                    location.pathname === item.path
+                      ? "bg-red-500 text-white shadow-md"
+                      : "text-gray-300 hover:text-white hover:bg-white/10"
                   }`}
                 >
                   {item.name}
@@ -87,13 +87,17 @@ const Navbar = () => {
                   Get Quote
                 </Link>
               </div>
-              
+
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="md:hidden p-2 rounded-lg bg-white/10 text-white hover:bg-white/20 transition-colors"
               >
-                {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                {isOpen ? (
+                  <X className="h-5 w-5" />
+                ) : (
+                  <Menu className="h-5 w-5" />
+                )}
               </button>
             </div>
           </div>
@@ -111,7 +115,7 @@ const Navbar = () => {
               className="fixed inset-0 bg-black/50 z-40 md:hidden"
               onClick={() => setIsOpen(false)}
             />
-            
+
             <motion.div
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
@@ -125,7 +129,9 @@ const Navbar = () => {
                     <div className="w-8 h-8 bg-red-500 rounded-lg flex items-center justify-center">
                       <Volume2 className="h-4 w-4 text-white" />
                     </div>
-                    <span className="text-lg font-bold text-white">FINS CAR AUDIO</span>
+                    <span className="text-lg font-bold text-white">
+                      FINS CAR AUDIO
+                    </span>
                   </div>
                   <button
                     onClick={() => setIsOpen(false)}
@@ -143,8 +149,8 @@ const Navbar = () => {
                       onClick={() => setIsOpen(false)}
                       className={`block px-4 py-3 rounded-lg font-medium transition-colors ${
                         location.pathname === item.path
-                          ? 'bg-red-500 text-white'
-                          : 'text-gray-300 hover:text-white hover:bg-white/10'
+                          ? "bg-red-500 text-white"
+                          : "text-gray-300 hover:text-white hover:bg-white/10"
                       }`}
                     >
                       {item.name}
